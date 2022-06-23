@@ -88,15 +88,12 @@ function initializeCode() {
     });
 
     submitButton.addEventListener("click", function () {
-        let imgList = [];
         let formData = new FormData();
 
         for (let index = 0; index < picArea.files.length; index++) {
-            imgList.push(picArea.files[index]);
+            formData.append("images", picArea.files[index]);
 
         };
-
-        formData.append("images", imgList);
 
         let newRecipe = { name: nameText.value, ingredients: newIngList, instructions: newInsList };
         fetch("http://localhost:1234/recipe/", {
